@@ -1,61 +1,49 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Revival</title>
-  <style>
-    body {
-      font-family: Verdana, sans-serif;
-      background: #c3d6f4;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background: #1f4ba5;
-      color: white;
-      padding: 10px;
-      text-align: center;
-    }
-    nav {
-      background: #244b8a;
-      padding: 8px;
-    }
-    nav a {
-      color: white;
-      margin: 0 10px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .container {
-      padding: 20px;
-    }
-    .card {
-      background: white;
-      padding: 15px;
-      margin: 10px 0;
-      border: 2px solid #244b8a;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Mi Revival Estilo 2008</h1>
-  </header>
-  <nav>
-    <a href="#">Inicio</a>
-    <a href="#">Catálogo</a>
-    <a href="#">Foro</a>
-  </nav>
-  <div class="container">
-    <div class="card">
-      <h2>Bienvenido</h2>
-      <p>ESPZ Es un revival español echo por el usuario Karambit🚀 LA PAGINA SIGUE EN DESARROLLO!.</p>
+// frontend/src/App.jsx
+import { useState } from "react";
+
+export default function App() {
+  const [games] = useState([
+    { id: 1, name: "Obby Adventures", image: "/images/obby.png" },
+    { id: 2, name: "Tycoon City", image: "/images/tycoon.png" },
+    { id: 3, name: "Battle Arena", image: "/images/battle.png" },
+  ]);
+
+  return (
+    <div className="min-h-screen bg-gray-100">
+      {/* Header */}
+      <header className="bg-white shadow-md p-4 flex justify-between items-center">
+        <h1 className="text-2xl font-bold text-blue-600">MiniRoblox</h1>
+        <nav className="space-x-4">
+          <button className="text-gray-700">Inicio</button>
+          <button className="text-gray-700">Juegos</button>
+          <button className="text-gray-700">Tienda</button>
+          <button className="text-gray-700">Perfil</button>
+        </nav>
+      </header>
+
+      {/* Banner */}
+      <section className="bg-blue-500 text-white p-10 text-center">
+        <h2 className="text-4xl font-bold">Explora millones de juegos</h2>
+        <p className="mt-2">Creados por jugadores como tú</p>
+      </section>
+
+      {/* Juegos destacados */}
+      <section className="p-6 grid grid-cols-1 sm:grid-cols-3 gap-6">
+        {games.map((game) => (
+          <div
+            key={game.id}
+            className="bg-white rounded-2xl shadow-md overflow-hidden hover:scale-105 transition"
+          >
+            <img src={game.image} alt={game.name} className="w-full h-40 object-cover" />
+            <div className="p-4">
+              <h3 className="text-lg font-semibold">{game.name}</h3>
+              <button className="mt-2 w-full bg-blue-600 text-white py-2 rounded-xl">
+                Jugar
+              </button>
+            </div>
+          </div>
+        ))}
+      </section>
     </div>
-    <div class="card">
-      <h2>Noticias</h2>
-      <p>Pronto más contenido...</p>
-    </div>
-  </div>
-</body>
-</html>
+  );
+}
